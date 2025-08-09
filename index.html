@@ -7,156 +7,309 @@
     <!-- SLDS CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@salesforce-ux/design-system/assets/styles/salesforce-lightning-design-system.min.css" />
     <style>
-        body {
-            background: linear-gradient(120deg, #f3f6fb, #eaf1fb);
-            min-height: 100vh;
-        }
-        .custom-hero {
-            min-height: 60vh;
+        .chart {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 200px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
         }
-        .custom-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin-bottom: 1.5rem;
-            border: 4px solid #1589ee;
-            object-fit: cover;
+        .chart-bar {
+            width: 50px;
+            background-color: #1589ee;
+            position: relative;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+        }
+        .chart-bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 12px;
+            color: #333;
         }
     </style>
 </head>
 <body class="slds-scope">
-    <div class="custom-hero">
-        <div class="slds-box slds-theme_default slds-p-around_large slds-text-align_center slds-shadow_large" style="max-width: 480px;">
-            <!-- Optional: Add your avatar below -->
-            <img src="your-avatar.jpg" alt="Chris Starleaf" class="custom-avatar">
-            <h1 class="slds-text-heading_large slds-m-bottom_small slds-text-color_brand">Chris Starleaf</h1>
-            <p class="slds-text-body_regular slds-m-bottom_medium">Developer &bull; Creator &bull; Lifelong Learner</p>
-            <div class="slds-button-group" role="group">
-                <a href="https://github.com/cstarlea" target="_blank" class="slds-button slds-button_neutral">GitHub</a>
-                <a href="https://www.linkedin.com/in/chris.starleaf" target="_blank" class="slds-button slds-button_brand">LinkedIn</a>
-                <a href="#projects" class="slds-button slds-button_outline-brand">Projects</a>
+    <header class="slds-global-header_container">
+        <div class="slds-global-header slds-grid slds-grid_align-spread">
+            <div class="slds-global-header__item">
+                <div class="slds-global-header__logo">
+                    <span class="slds-assistive-text">Chris Starleaf</span>
+                </div>
+                <div class="slds-global-header__item">
+                    <h1 class="slds-text-heading_medium">Chris Starleaf</h1>
+                </div>
+            </div>
+            <div class="slds-global-header__item">
+                <ul class="slds-global-header__item-list">
+                    <li class="slds-global-header__item">
+                        <button class="slds-button slds-button_icon slds-button_icon slds-button_icon-container slds-button_icon-small slds-global-header__button_icon-actions" title="App Launcher">
+                            <svg class="slds-button__icon" aria-hidden="true">
+                                <use xlink:href="https://cdn.jsdelivr.net/npm/@salesforce-ux/design-system/assets/icons/utility-sprite/svg/symbols.svg#app_launcher"></use>
+                            </svg>
+                            <span class="slds-assistive-text">App Launcher</span>
+                        </button>
+                    </li>
+                    <li class="slds-global-header__item">
+                        <button class="slds-button slds-button_icon slds-button_icon slds-button_icon-container slds-button_icon-small slds-global-header__button_icon-user" title="User">
+                            <svg class="slds-button__icon" aria-hidden="true">
+                                <use xlink:href="https://cdn.jsdelivr.net/npm/@salesforce-ux/design-system/assets/icons/utility-sprite/svg/symbols.svg#user"></use>
+                            </svg>
+                            <span class="slds-assistive-text">User</span>
+                        </button>
+                    </li>
+                    <li class="slds-global-header__item">
+                        <button class="slds-button slds-button_icon slds-button_icon slds-button_icon-container slds-button_icon-small slds-global-header__button_icon-settings" title="Settings">
+                            <svg class="slds-button__icon" aria-hidden="true">
+                                <use xlink:href="https://cdn.jsdelivr.net/npm/@salesforce-ux/design-system/assets/icons/utility-sprite/svg/symbols.svg#settings"></use>
+                            </svg>
+                            <span class="slds-assistive-text">Settings</span>
+                        </button>
+                    </li>
+                </ul>
             </div>
         </div>
-    </div>
+    </header>
 
-    <main class="slds-p-around_x-large slds-grid slds-wrap slds-gutters slds-container_medium slds-container_center">
-        <!-- Summary -->
-        <section class="slds-size_1-of-1 slds-m-bottom_x-large">
-            <div class="slds-card">
-                <header class="slds-card__header slds-grid">
-                    <div class="slds-media slds-media_center slds-has-flexi-truncate">
-                        <div class="slds-media__body">
-                            <h2 class="slds-card__header-title">
-                                <span>Professional Summary</span>
-                            </h2>
+    <main class="slds-p-around_x-large slds-m-top_large">
+        <div class="slds-tabs_default">
+            <ul class="slds-tabs_default__nav" role="tablist">
+                <li class="slds-tabs_default__item slds-is-active" title="Home" role="presentation"><a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">Home</a></li>
+                <li class="slds-tabs_default__item" title="Skills" role="presentation"><a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">Skills</a></li>
+                <li class="slds-tabs_default__item" title="Projects" role="presentation"><a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">Projects</a></li>
+            </ul>
+            <div id="tab-default-1" class="slds-tabs_default__content slds-show" role="tabpanel" aria-labelledby="tab-default-1__item">
+                <div class="slds-grid slds-wrap slds-gutters">
+                    <!-- Chart -->
+                    <section class="slds-size_1-of-1 slds-m-bottom_x-large">
+                        <div class="slds-card">
+                            <header class="slds-card__header slds-grid">
+                                <div class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title">
+                                            <span>Skills Overview</span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </header>
+                            <div class="slds-card__body slds-card__body_inner">
+                                <div class="chart">
+                                    <div class="chart-bar" style="height: 80%;">80%<span class="chart-bar-label">JavaScript</span></div>
+                                    <div class="chart-bar" style="height: 90%;">90%<span class="chart-bar-label">Salesforce</span></div>
+                                    <div class="chart-bar" style="height: 70%;">70%<span class="chart-bar-label">Node.js</span></div>
+                                    <div class="chart-bar" style="height: 60%;">60%<span class="chart-bar-label">HTML/CSS</span></div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </header>
-                <div class="slds-card__body slds-card__body_inner">
-                    <p>Experienced software developer with a passion for building scalable web applications and delivering business value. Adept at collaborating with cross-functional teams and learning new technologies quickly.</p>
+                    </section>
+                    <!-- Summary -->
+                    <section class="slds-size_1-of-1 slds-m-bottom_x-large">
+                        <div class="slds-card">
+                            <header class="slds-card__header slds-grid">
+                                <div class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title">
+                                            <span>Professional Summary</span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </header>
+                            <div class="slds-card__body slds-card__body_inner">
+                                <p>Experienced software developer with a passion for building scalable web applications and delivering business value. Adept at collaborating with cross-functional teams and learning new technologies quickly.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Experience -->
+                    <section class="slds-size_1-of-1 slds-m-bottom_x-large">
+                        <div class="slds-card">
+                            <header class="slds-card__header slds-grid">
+                                <div class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title">
+                                            <span>Experience</span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </header>
+                            <div class="slds-card__body slds-card__body_inner">
+                                <ul class="slds-list_vertical slds-has-dividers_top-space">
+                                    <li class="slds-list__item">
+                                        <strong>Senior Software Engineer</strong> – Acme Corp (2022–Present)<br>
+                                        <span class="slds-text-body_small">Lead developer for cloud-based CRM solutions. Mentored junior engineers and improved deployment pipelines.</span>
+                                    </li>
+                                    <li class="slds-list__item">
+                                        <strong>Software Engineer</strong> – Tech Solutions (2019–2022)<br>
+                                        <span class="slds-text-body_small">Built and maintained web applications using JavaScript, Node.js, and Salesforce technologies.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Contact -->
+                    <section class="slds-size_1-of-1 slds-m-bottom_x-large">
+                        <div class="slds-card">
+                            <header class="slds-card__header slds-grid">
+                                <div class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title">
+                                            <span>Contact</span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </header>
+                            <div class="slds-card__body slds-card__body_inner">
+                                <p>LinkedIn: <a href="https://www.linkedin.com/in/chris.starleaf" target="_blank">chris.starleaf</a></p>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
-        </section>
-
-        <!-- Experience -->
-        <section class="slds-size_1-of-1 slds-m-bottom_x-large">
-            <div class="slds-card">
-                <header class="slds-card__header slds-grid">
-                    <div class="slds-media slds-media_center slds-has-flexi-truncate">
-                        <div class="slds-media__body">
-                            <h2 class="slds-card__header-title">
-                                <span>Experience</span>
-                            </h2>
+            <div id="tab-default-2" class="slds-tabs_default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item">
+                <!-- Skills -->
+                <section class="slds-size_1-of-1 slds-m-bottom_x-large">
+                    <div class="slds-card">
+                        <header class="slds-card__header slds-grid">
+                            <div class="slds-media slds-media_center slds-has-flexi-truncate">
+                                <div class="slds-media__body">
+                                    <h2 class="slds-card__header-title">
+                                        <a href="javascript:void(0);" class="slds-card__header-link" title="Skills">
+                                            <span>Skills</span>
+                                        </a>
+                                    </h2>
+                                </div>
+                            </div>
+                        </header>
+                        <div class="slds-card__body slds-card__body_inner">
+                            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                                <thead>
+                                    <tr class="slds-text-title_caps">
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Skill">Skill</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate" title="Proficiency">Proficiency</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td data-label="Skill">
+                                            <div class="slds-truncate" title="JavaScript / TypeScript">JavaScript / TypeScript</div>
+                                        </td>
+                                        <td data-label="Proficiency">
+                                            <div class="slds-truncate" title="Expert">Expert</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="Skill">
+                                            <div class="slds-truncate" title="Salesforce (Apex, LWC, Flows)">Salesforce (Apex, LWC, Flows)</div>
+                                        </td>
+                                        <td data-label="Proficiency">
+                                            <div class="slds-truncate" title="Expert">Expert</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="Skill">
+                                            <div class="slds-truncate" title="Node.js & Express">Node.js &amp; Express</div>
+                                        </td>
+                                        <td data-label="Proficiency">
+                                            <div class="slds-truncate" title="Advanced">Advanced</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="Skill">
+                                            <div class="slds-truncate" title="HTML5 & CSS3">HTML5 &amp; CSS3</div>
+                                        </td>
+                                        <td data-label="Proficiency">
+                                            <div class="slds-truncate" title="Advanced">Advanced</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-label="Skill">
+                                            <div class="slds-truncate" title="Git & CI/CD">Git &amp; CI/CD</div>
+                                        </td>
+                                        <td data-label="Proficiency">
+                                            <div class="slds-truncate" title="Intermediate">Intermediate</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </header>
-                <div class="slds-card__body slds-card__body_inner">
-                    <ul class="slds-list_vertical slds-has-dividers_top-space">
-                        <li class="slds-list__item">
-                            <strong>Senior Software Engineer</strong> – Acme Corp (2022–Present)<br>
-                            <span class="slds-text-body_small">Lead developer for cloud-based CRM solutions. Mentored junior engineers and improved deployment pipelines.</span>
-                        </li>
-                        <li class="slds-list__item">
-                            <strong>Software Engineer</strong> – Tech Solutions (2019–2022)<br>
-                            <span class="slds-text-body_small">Built and maintained web applications using JavaScript, Node.js, and Salesforce technologies.</span>
-                        </li>
-                    </ul>
-                </div>
+                </section>
             </div>
-        </section>
-
-        <!-- Skills -->
-        <section class="slds-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-m-bottom_x-large">
-            <div class="slds-card">
-                <header class="slds-card__header slds-grid">
-                    <div class="slds-media slds-media_center slds-has-flexi-truncate">
-                        <div class="slds-media__body">
-                            <h2 class="slds-card__header-title">
-                                <span>Skills</span>
-                            </h2>
+            <div id="tab-default-3" class="slds-tabs_default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-3__item">
+                <!-- Projects -->
+                <section class="slds-size_1-of-1 slds-m-bottom_x-large">
+                    <div class="slds-card">
+                        <header class="slds-card__header slds-grid">
+                            <div class="slds-media slds-media_center slds-has-flexi-truncate">
+                                <div class="slds-media__body">
+                                    <h2 class="slds-card__header-title">
+                                        <span>Projects</span>
+                                    </h2>
+                                </div>
+                            </div>
+                        </header>
+                        <div class="slds-card__body slds-card__body_inner">
+                            <ul class="slds-list_vertical">
+                                <li class="slds-list__item">
+                                    <strong>Personal Portfolio</strong> – <a href="https://github.com/cstarlea" target="_blank">View on GitHub</a><br>
+                                    <span class="slds-text-body_small">A responsive portfolio site built with HTML, CSS, and SLDS.</span>
+                                </li>
+                                <li class="slds-list__item">
+                                    <strong>Salesforce Automation Tools</strong><br>
+                                    <span class="slds-text-body_small">Automated business processes using Salesforce Flows and Apex triggers.</span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                </header>
-                <div class="slds-card__body slds-card__body_inner">
-                    <ul class="slds-list_dotted">
-                        <li>JavaScript / TypeScript</li>
-                        <li>Salesforce (Apex, LWC, Flows)</li>
-                        <li>Node.js &amp; Express</li>
-                        <li>HTML5 &amp; CSS3</li>
-                        <li>Git &amp; CI/CD</li>
-                    </ul>
-                </div>
+                </section>
             </div>
-        </section>
-
-        <!-- Projects -->
-        <section id="projects" class="slds-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-m-bottom_x-large">
-            <div class="slds-card">
-                <header class="slds-card__header slds-grid">
-                    <div class="slds-media slds-media_center slds-has-flexi-truncate">
-                        <div class="slds-media__body">
-                            <h2 class="slds-card__header-title">
-                                <span>Projects</span>
-                            </h2>
-                        </div>
-                    </div>
-                </header>
-                <div class="slds-card__body slds-card__body_inner">
-                    <ul class="slds-list_vertical">
-                        <li class="slds-list__item">
-                            <strong>Personal Portfolio</strong> – <a href="https://github.com/cstarlea" target="_blank">View on GitHub</a><br>
-                            <span class="slds-text-body_small">A responsive portfolio site built with HTML, CSS, and SLDS.</span>
-                        </li>
-                        <li class="slds-list__item">
-                            <strong>Salesforce Automation Tools</strong><br>
-                            <span class="slds-text-body_small">Automated business processes using Salesforce Flows and Apex triggers.</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact -->
-        <section class="slds-size_1-of-1">
-            <div class="slds-card">
-                <header class="slds-card__header slds-grid">
-                    <div class="slds-media slds-media_center slds-has-flexi-truncate">
-                        <div class="slds-media__body">
-                            <h2 class="slds-card__header-title">
-                                <span>Contact</span>
-                            </h2>
-                        </div>
-                    </div>
-                </header>
-                <div class="slds-card__body slds-card__body_inner">
-                    <p>LinkedIn: <a href="https://www.linkedin.com/in/chris.starleaf" target="_blank">chris.starleaf</a></p>
-                </div>
-            </div>
-        </section>
+        </div>
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabContainer = document.querySelector('.slds-tabs_default');
+            const tabs = tabContainer.querySelectorAll('.slds-tabs_default__item');
+            const tabPanels = tabContainer.querySelectorAll('.slds-tabs_default__content');
+
+            tabs.forEach(function (tab, index) {
+                tab.addEventListener('click', function () {
+                    // Deactivate all tabs
+                    tabs.forEach(function (t) {
+                        t.classList.remove('slds-is-active');
+                        t.querySelector('a').setAttribute('aria-selected', 'false');
+                        t.querySelector('a').setAttribute('tabindex', '-1');
+                    });
+
+                    // Hide all tab panels
+                    tabPanels.forEach(function (panel) {
+                        panel.classList.remove('slds-show');
+                        panel.classList.add('slds-hide');
+                    });
+
+                    // Activate the clicked tab
+                    tab.classList.add('slds-is-active');
+                    tab.querySelector('a').setAttribute('aria-selected', 'true');
+                    tab.querySelector('a').setAttribute('tabindex', '0');
+
+
+                    // Show the corresponding tab panel
+                    const tabId = tab.querySelector('a').getAttribute('aria-controls');
+                    const tabPanel = document.getElementById(tabId);
+                    tabPanel.classList.remove('slds-hide');
+                    tabPanel.classList.add('slds-show');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
